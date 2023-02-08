@@ -9,6 +9,7 @@
 # if second argument is not found, binary(es) from $WORKSPACE/rpms folder is/are installed
 #   and /usr/lib/jvm/java is used as jdk home.
 # $SCRATCH_DISK is recomended to set for various garbage operations (preset to /mnt/ramdisk)
+# $PREP_SCRIPT is script, wich can be run instead of $2, and will prepare tested product. Defaults to some /mnt/somethign again
 
 ## resolve folder of this script, following all symlinks,
 ## http://stackoverflow.com/questions/59895/can-a-bash-script-tell-what-directory-its-stored-in
@@ -50,6 +51,14 @@ fi
 if [[ x${SCRATCH_DISK} == x ]]; then
   SCRATCH_DISK=/mnt/ramdisk
 fi
+# ${SCRATCH_DISK} should be set by user. If not, lets use some default.
+if [[ x${SCRATCH_DISK} == x ]]; then
+  SCRATCH_DISK=/mnt/ramdisk
+fi
+# ${PREP_SCRIPT} may be set by user. If not, lets use some default.
+if [[ x${PREP_SCRIPT} == x ]]; then
+  PREP_SCRIPT="/mnt/shared/TckScripts/jenkins/benchmarks/cleanAndInstallRpms.sh"
+fi
 
 if [ "x$ENFORCED_JDK_STATUS" == "x" ] ; then
   rm -rvf $SCRATCH_DISK/rpms; rm -rvf $SCRATCH_DISK/rpms-old
@@ -65,7 +74,7 @@ if [ "x$ENFORCED_JDK_STATUS" == "x" ] ; then
     rm -rf $SCRATCH_DISK/jtreg-src-backup && mkdir $SCRATCH_DISK/jtreg-src-backup &&  mv $SCRATCH_DISK/rpms/*.src.* $SCRATCH_DISK/jtreg-src-backup/
   set -e
   pushd $SCRATCH_DISK
-    bash /mnt/shared/TckScripts/jenkins/benchmarks/cleanAndInstallRpms.sh
+    bash ${PREP_SCRIPT}
   popd
   set +e # .src. is optional
     #moving src.rpm (or src.tarxz) back
@@ -116,9 +125,10 @@ for TEST in $TESTS ; do
   set +e
   for x in `seq $RFAT_RERUNS` ; do
     if [ "x$x" = "x1" ] ; then
+      echo  "single run"
       echo  "--------ATTEMPT $x/$RFAT_RERUNS of $TEST ----------"
     else
-      echo  "https://gitlab.cee.redhat.com/java-qa/TckScripts/-/merge_requests/88/"
+      echo  "rerunning"
       echo  "--------ATTEMPT $x/$RFAT_RERUNS of $TEST ----------"
     fi
     rm -rf $TTDIR
