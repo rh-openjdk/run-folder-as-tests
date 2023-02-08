@@ -52,3 +52,5 @@ and summed up  `results.properties`  and  junit result file `containersQa.jtr.xm
  * https://github.com/judovana/jenkins-report-generic-chart-column
  * https://plugins.jenkins.io/junit/
 
+
+`jtreg-shell-xml.sh` can be used as standlone, if you need to generate trivial junit file from bash.
