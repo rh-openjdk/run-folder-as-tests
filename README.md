@@ -22,7 +22,7 @@ containersQa/
 ├── readme
 └── testlib.bash
 ```
-Next to junit/jtreg compatible outpu it supports `ignoring` of tests and reruning of failures.
+Next to junit/jtreg compatible outpu it supports `ignoring` of tests and reruning of failures. Only .sh files are run. 
 
 ```
 .../run-folder-as-tests/run-folder-as-tests.sh .../containersQa tested_product
