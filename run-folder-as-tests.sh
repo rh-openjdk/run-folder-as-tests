@@ -51,10 +51,7 @@ fi
 if [[ x${SCRATCH_DISK} == x ]]; then
   SCRATCH_DISK=/mnt/ramdisk
 fi
-# ${SCRATCH_DISK} should be set by user. If not, lets use some default.
-if [[ x${SCRATCH_DISK} == x ]]; then
-  SCRATCH_DISK=/mnt/ramdisk
-fi
+
 # ${PREP_SCRIPT} may be set by user. If not, lets use some default.
 if [[ x${PREP_SCRIPT} == x ]]; then
   PREP_SCRIPT="/mnt/shared/TckScripts/jenkins/benchmarks/cleanAndInstallRpms.sh"
