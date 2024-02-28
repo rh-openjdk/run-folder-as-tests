@@ -54,3 +54,4 @@ and summed up  `results.properties`  and  junit result file `containersQa.jtr.xm
 
 
 `jtreg-shell-xml.sh` can be used as standlone, if you need to generate trivial junit file from bash.
+`tap-shell-tap.sh` can be used as standlone, if you need to generate trivial tap file from bash.
