@@ -48,10 +48,11 @@ results.properties
 results.txt
 ```
 and summed up  `results.properties`  and  junit result file `containersQa.jtr.xml` eith its packed varriant in tar.gz - up to you wchich t keep. Directly connectable with:
- * https://github.com/judovana/jenkins-report-jck/
+ * https://github.com/jenkinsci/report-jtreg-plugin
  * https://github.com/judovana/jenkins-report-generic-chart-column
  * https://plugins.jenkins.io/junit/
+ * https://plugins.jenkins.io/tap/
 
-
-`jtreg-shell-xml.sh` can be used as standlone, if you need to generate trivial junit file from bash.
-`tap-shell-tap.sh` can be used as standlone, if you need to generate trivial tap file from bash.
+## reusabel components
+* `jtreg-shell-xml.sh` can be used as standlone, if you need to generate trivial junit file from bash.
+* `tap-shell-tap.sh` can be used as standlone, if you need to generate trivial tap file from bash.
