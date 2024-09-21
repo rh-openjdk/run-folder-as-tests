@@ -70,3 +70,18 @@ function tapFromFile() {
     done
   fi
 }
+
+function tapFromWholeFile() {
+  local file="$1"
+  local alilas="$2"
+  if [ ! -e "$file" ]; then
+    tapLine "$file/$alilas" "do not exists"
+  else
+    echo "    cat $file/$alilas:"
+    echo "      |"
+    cat $file| while IFS= read -r line; do
+      line=`echo $line | sed 's/^\s*\|\s*$//g'`
+      echo "        $line"
+    done
+  fi
+}
