@@ -40,8 +40,11 @@ set -x
 set -e
 set -o pipefail
 
+# Allow for an environment variable to be passed in.
+if [[ x${SUITE} == x ]] ; then
+   SUITE=`basename $DIR`
+fi
 
-SUITE=`basename $DIR`
 # ${WORKSPACE} is set by jenkins. So when running local, without VM, it uses real jenkins workspace. Otherwise use /mnt/worksace
 if [[ x${WORKSPACE} == x ]]; then
   WORKSPACE=/mnt/workspace
