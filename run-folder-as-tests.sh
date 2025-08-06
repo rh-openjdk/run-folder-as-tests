@@ -195,6 +195,9 @@ cd ${WORKSPACE}
 pwd
 ls -lR
 
+echo "total : $ALL_TESTS"
+echo "skiped: $SKIPPED_TESTS"
+echo "passed: $PASSED_TESTS"
 echo "Failed: $FAILED_TESTS"
 # returning 0 to allow unstable state
 exit 0
