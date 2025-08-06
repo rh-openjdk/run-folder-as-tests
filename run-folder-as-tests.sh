@@ -102,7 +102,20 @@ if [ "$?" -ne "0" ]; then
   let FAILED_TESTS=$FAILED_TESTS+1
 fi
 
-TESTS=`ls $DIR | grep "\\.sh$" | sort`
+if [ "x$WHITELIST" == "x" ] ; then
+  WHITELIST=".*"
+  echo "Including jsut all"
+else
+  echo "Including jsut $WHITELIST"
+fi
+if [ "x$BLACKLIST" == "x" ] ; then
+  BLACKLIST="absoluteNonsense"
+  echo "Excluding nothing"
+else
+  echo "Excluding $BLACKLIST"
+fi
+TESTS=`ls $DIR | grep "\\.sh$" | grep -e "$WHITELIST"  | grep -ve "$BLACKLIST" sort`
+echo "tests: $TESTS"
 echo -n "" > ${WORKSPACE}/results.txt
 
 source $SCRIPT_DIR/jtreg-shell-xml.sh
