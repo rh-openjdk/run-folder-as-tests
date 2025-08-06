@@ -114,7 +114,7 @@ if [ "x$BLACKLIST" == "x" ] ; then
 else
   echo "Excluding $BLACKLIST"
 fi
-TESTS=`ls $DIR | grep "\\.sh$" | grep -e "$WHITELIST"  | grep -ve "$BLACKLIST" sort`
+TESTS=`ls $DIR | grep "\\.sh$" | grep -e "$WHITELIST"  | grep -ve "$BLACKLIST" | sort`
 echo "tests: $TESTS"
 echo -n "" > ${WORKSPACE}/results.txt
 
