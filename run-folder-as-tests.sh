@@ -191,6 +191,7 @@ if [ "x$ENFORCED_JDK_STATUS" == "x" ] ; then
   fi
 fi
 
+set +x
 cd ${WORKSPACE}
 pwd
 ls -lR
