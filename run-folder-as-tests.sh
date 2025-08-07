@@ -97,10 +97,7 @@ rm -rf $SCRATCH_DISK/$SUITE
 set -x
 mkdir $SCRATCH_DISK/$SUITE
 mkdir $TMPRESULTS
-rpm -qa | sort > $TMPRESULTS/rpms.txt
-if [ "$?" -ne "0" ]; then
-  let FAILED_TESTS=$FAILED_TESTS+1
-fi
+rpm -qa | sort > $TMPRESULTS/rpms.txt || echo "no rpms to list"
 
 if [ "x$WHITELIST" == "x" ] ; then
   WHITELIST=".*"
