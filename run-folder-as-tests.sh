@@ -201,6 +201,7 @@ if [ "x$ENFORCED_JDK_STATUS" == "x" ] ; then
   fi
 fi
 
+cat ${WORKSPACE}/results/results.txt
 set +x
 cd ${WORKSPACE}
 pwd
