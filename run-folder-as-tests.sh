@@ -49,6 +49,7 @@ fi
 if [[ x${WORKSPACE} == x ]]; then
   WORKSPACE=/mnt/workspace
 fi
+export WORKSPACE
 
 # ${SCRATCH_DISK} should be set by user. If not, lets use some default.
 if [[ x${SCRATCH_DISK} == x ]]; then
