@@ -10,9 +10,9 @@
 # Why logfile and previewPathToLogfile are different? On system where the xml will be shown, the path may be compellty different
 #  then on the system where t was run, or not present at all. Thats why. logFile is not propagated, only previewPathToLogfile is.
 
+# when piped, escape & " < >
 function escapeForXml {
-	# escape & " < >
-	printf '%s' "$1" | sed \
+	sed \
 	-e 's/\&/\&amp;/g' \
 	-e 's/"/\&quot;/g' \
 	-e 's/</\&lt;/g' \
@@ -31,8 +31,7 @@ function printXmlTest { # classname testname, time, file, jenkins view_dir
   else
     echo ">"
     if cat $logFile | grep -q '^!skipped!' ; then
-      local skipMessage=`cat $logFile | grep -e   '^!skipped!' | tail -n 1`
-      skipMessage="$(escapeForXml "${skipMessage}")"
+       local skipMessage=$(cat $logFile | grep -e   '^!skipped!' | tail -n 1 | escapeForXml )
       echo "<skipped message=\"$skipMessage - see: $viewFileStub\"/>"
     else
       echo "      <failure message=\"see: $viewFileStub\" type=\"non zero sub-shell return code\">"
